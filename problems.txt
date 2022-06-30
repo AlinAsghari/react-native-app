@@ -1,0 +1,4 @@
+1- title from bottonNavbar to drawer Title Bar - Title hayee tab hayee 
+	payeen namayesh dadeh nemishavand
+2- az advertise list -> advertise detail ax namayesh dadeh nemishavad bayad dar style 
+	image width:100% ra haz konim va adda sabet bedim ok misheh
