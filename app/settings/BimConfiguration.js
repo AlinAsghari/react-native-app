@@ -1,21 +1,29 @@
-import * as enviornment from './BimSettings'
-
 
 const settings = {
     dev_Bank: {
-      apiUrl: "http://192.168.50.80:9000/",
+      apiUrl: "https://application-nodejs-backend-app.iran.liara.run/",
+      apiUrl_local : "http://192.168.50.80:9000/",
+      apiUrl_liara: "https://application-nodejs-backend-app.iran.liara.run/",
+      apiUrl_Heroku: "https://application-nodejs-backend-app.herokuapp.com/",
       fakeServerIPInData : '192.168.0.14',
     },
     dev_Home: {
-      apiUrl: "http://192.168.50.1:9000/",
+      apiUrl: "https://application-nodejs-backend-app.iran.liara.run/",
+      apiUrl_local : "http://192.168.50.1:9000/",
+      apiUrl_liara: "https://application-nodejs-backend-app.iran.liara.run/",
+      apiUrl_Heroku: "https://application-nodejs-backend-app.herokuapp.com/",      
       fakeServerIPInData : '192.168.0.14',
     },
     staging: {
-      apiUrl: "http://192.168.50.80:9000/",
+      apiUrl: "https://application-nodejs-backend-app.iran.liara.run/",
+      apiUrl_liara: "https://application-nodejs-backend-app.iran.liara.run/",
+      apiUrl_Heroku: "https://application-nodejs-backend-app.herokuapp.com/",      
       fakeServerIPInData : '192.168.0.14',
     },
     production: {
-      apiUrl: "http://192.168.50.80:9000/",
+      apiUrl: "https://application-nodejs-backend-app.iran.liara.run/",
+      apiUrl_liara: "https://application-nodejs-backend-app.iran.liara.run/",
+      apiUrl_Heroku: "https://application-nodejs-backend-app.herokuapp.com/",      
       fakeServerIPInData : '192.168.0.14',
     },
   };
