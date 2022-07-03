@@ -2,7 +2,7 @@
 
 const log = ( error ) => {
     console.log(JSON.stringify(error))
-    //Bugsnag.notify(error);
+    //Bugsnag.notify( new Error(error));
 }
 
 const start = () => {

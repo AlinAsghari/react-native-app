@@ -19,7 +19,7 @@
     ],
     "ios": {
       "bundleIdentifier": "ir.bimcoluder.reactnativeexample",
-      "buildNumber": "1.0.0",      
+      "buildNumber": "1.0.0",
       "supportsTablet": true
     },
     "android": {
@@ -33,9 +33,22 @@
     "web": {
       "favicon": "./app/assets/favicon.png"
     },
-    "description": "this app will be the first application of our team..." ,
-    "notification":{
-      "iosDisplayInForeground" : true
+    "description": "this app will be the first application of our team...",
+    "notification": {
+      "iosDisplayInForeground": true
+    },
+    "extra": {
+      "bugsnag": {
+        "apiKey": "fedd936cdfafe295c05f6aad78512d08"
+      }
+    },
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "@bugsnag/expo/hooks/post-publish.js",
+          "config": {}
+        }
+      ]
     }
   }
 }

@@ -49,6 +49,7 @@ import BimLogger from './app/utility/helpers/BimLogger';
 //import * as BimConfig from './app/settings/BimConfiguration';
 
 import * as BimConfiguration from './app/settings/BimConfiguration';
+//import prompt from 'react-native-prompt-android';
 
 // BimLogger.log( "Application Started App  ... " + new Date().toLocaleString() );
 // BimLogger.log( "apiUrl ==> " + BimConfiguration.currentSettings().apiUrl )
@@ -58,6 +59,7 @@ import * as BimConfiguration from './app/settings/BimConfiguration';
 export default function App() {
   const Drawer = createDrawerNavigator();
   const [user , setUser] = React.useState();
+  const [loadingMessage , setLoadingMessage] = React.useState();
   const [isAppReady , setIsAppReady] = React.useState(false);
 
   BimLogger.start(); // start of logging
@@ -78,6 +80,7 @@ export default function App() {
   // React.useEffect(() => { pushNotification.sendNotification( "first Message" , "App loading is done...") } , [])
 
   const restoreUser = async() =>{
+    setLoadingMessage( loadingMessage + "_7");
     const user = await BimSecureStorage.getUser()
     if(user)
       setUser(user);
@@ -85,20 +88,27 @@ export default function App() {
 
   const _loadResourcesAsync = async () => {
     try {
+      setLoadingMessage( loadingMessage + "_1");
       await SplashScreen.preventAutoHideAsync();
+      setLoadingMessage(loadingMessage + "_2");
       await restoreUser();
+      setLoadingMessage( loadingMessage + "_3");
       await pushNotification.registerForPushNotification();
+      setLoadingMessage( loadingMessage + "_4");
 
       //await new Promise(resolve => setTimeout(resolve, 2000));
     } catch (e) {
       BimLogger.log( " _loadResourcesAsync function error : " + e);
+      setLoadingMessage( loadingMessage + "_5" + " _loadResourcesAsync function error : " + e);
     } finally {
       setIsAppReady(true);
+      setLoadingMessage( loadingMessage + "_10");
       //await SplashScreen.hideAsync();
     }
   }  
   const onLayoutRootView = useCallback(async () => {
       if (isAppReady) {
+        setLoadingMessage( loadingMessage + "_6");
         await SplashScreen.hideAsync();
       }
     }, [isAppReady]);
@@ -111,10 +121,15 @@ export default function App() {
   return ( 
     <> 
       <View onLayout={onLayoutRootView} />
+      <View>
+          <Text>
+            {loadingMessage}
+          </Text>
+      </View>
       <BimApplicationError/>      
       <AuthContext.Provider value={ { user , setUser } } >
         <NavigationContainer ref={navigationRef} >
-          { !user && <AuthNavigator /> }
+          { !user && <AuthNavigator  /> }
           { user  &&  <AppDrawerNavigator  /> }
         </NavigationContainer>  
       </AuthContext.Provider>

@@ -22,6 +22,7 @@
     "@react-navigation/stack": "^6.2.1",
     "@sentry/browser": "^7.3.1",
     "apisauce": "^2.1.5",
+    "bugsnag-expo-cli": "^45.0.0",
     "dayjs": "^1.11.3",
     "expo": "~44.0.0",
     "expo-blur": "^11.1.0",
