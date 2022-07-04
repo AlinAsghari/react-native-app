@@ -1,16 +1,16 @@
 {
   "expo": {
-    "name": "ReactNativeExample",
-    "slug": "ReactNativeExample",
+    "name": "bimApplication",
+    "slug": "bimApplication",
     "privacy": "public",
     "version": "1.0.0",
     "orientation": "default",
-    "icon": "./app/assets/logo-red.png",
+    "icon": "./app/assets/icon.png",
     "splash": {
       "image": "./app/assets/splashScreen.png",
       "resizeMode": "cover",
       "backgroundColor": "#e63c4b"
-    },
+    },    
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -18,7 +18,7 @@
       "**/*"
     ],
     "ios": {
-      "bundleIdentifier": "ir.bimcoluder.reactnativeexample",
+      "bundleIdentifier": "ir.bimcoluder.bimapplication",
       "buildNumber": "1.0.0",
       "supportsTablet": true
     },
@@ -36,19 +36,6 @@
     "description": "this app will be the first application of our team...",
     "notification": {
       "iosDisplayInForeground": true
-    },
-    "extra": {
-      "bugsnag": {
-        "apiKey": "fedd936cdfafe295c05f6aad78512d08"
-      }
-    },
-    "hooks": {
-      "postPublish": [
-        {
-          "file": "@bugsnag/expo/hooks/post-publish.js",
-          "config": {}
-        }
-      ]
     }
   }
 }

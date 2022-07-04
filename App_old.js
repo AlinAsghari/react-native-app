@@ -1,169 +1,135 @@
+import React , {useState , useCallback} from 'react';
 import { 
     StyleSheet, Text, View , Image,SafeAreaView , ScrollView  ,
-    TouchableOpacity, TouchableWithoutFeedback , TouchableHighlight, TouchableNativeFeedback ,
     Alert , Platform , StatusBar, Dimensions , Button
 } from 'react-native';
 
-import {useDimensions , useDeviceOrientation } from '@react-native-community/hooks';
 import {styles}  from './app/settings/AppStyles'
-import WelcomeScreen  from './app/screens/banksListScreen/BimBanksListScreen';
+import WelcomeScreen  from './app/screens/loginScreen/BimWelcomeScreen';
+import BimBanksListScreen from './app/screens/banksListScreen/BimBanksListScreen';
+import BimMessagesListScreen from './app/screens/messageListScreen/BimMessagesListScreen';
+import BimMasterScreen from './app/components/BimMasterScreen';
+import BimTextInput from './app/components/BimTextInput';
+import BimItemSeprator from './app/components/BimItemSeprator';
+import BimPickerItem from './app/components/BimPickerItem';
+import BimComponentTestScreen from './app/screens/permissionScreen/BimTestScreen';
+import BimAccountScreen from './app/screens/accountSceen/BimUserAccountScreen';
+import BimLoginScreen from './app/screens/loginScreen/BimLoginScreen';
+import BimDataEntryScreen from './app/screens/dataEntryForm/BimDataEntryScreen';
+import BimPermissionsScreen from './app/screens/permissionScreen/BimTestScreen';
+import BimTestScreen from './app/screens/permissionScreen/BimTestScreen';
+import BimStackNavigatorScreen from './app/screens/navigatorsExampleScreen/BimStackNavigatorScreen';
+import BimTabNavigatorScreen from './app/screens/navigatorsExampleScreen/BimTabNavigatorScreen';
+import BimAdvertsListScreen from './app/screens/advertiseScreens/BimAdvertsListScreen';
+import BimAdvertiseNavigator from './app/screens/advertiseScreens/BimAdvertiseNavigator';
+import BimAdvertiseScreen from './app/screens/advertiseScreens/BimCreateAdvertiseScreen';
+import BimCreateAdvertiseScreen from './app/screens/advertiseScreens/BimCreateAdvertiseScreen';
+
+import {Ionicons , MaterialCommunityIcons} from '@expo/vector-icons'
+import { NavigationContainer , useNavigation  , useRoute} from '@react-navigation/native'; 
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import AuthNavigator from './app/navigation/AuthNavigator'
+import AppBottomTabNavigator from './app/navigation/AppBottomTabNavigator'
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { CustomDrawerContent } from './app/navigation/AppDrawerContent ';
+import AppDrawerNavigator from './app/navigation/AppDrawerNavigator';
+import Constants from 'expo-constants';
+import BimSecureStorage from './app/utility/helpers/BimSecureStorage';
+//import AppLoading from 'expo-app-loading';
+//import { AppLoading, SplashScreen } from 'expo';
+import * as SplashScreen from 'expo-splash-screen';
+import AuthContext from './app/utility/contexts/authContext';
+import BimApplicationError from './app/components/BimApplicationError';
+import { navigationRef } from './app/utility/variables/globalVariables';
+import { BimRoutes } from './app/settings';
+import usePushNotification from './app/utility/hooks/usePushNotification';
+import * as navigation from "./app/utility/variables/globalVariables";
 import BimLogger from './app/utility/helpers/BimLogger';
+//import * as BimConfig from './app/settings/BimConfiguration';
 
-BimLogger.log("Application Started ... " + new Date().toLocaleString());
+import * as BimConfiguration from './app/settings/BimConfiguration';
+import BimLogView from './app/components/BimLogView';
+//import prompt from 'react-native-prompt-android';
 
-
-const handlerHeaderClick = () => {
-  alertMessage("header clicked...");
-  };
-const handlerTouchableWithoutFeedback = () => {
-  alertMessage("TouchableWithoutFeedback tapped...");
-  }
-const handlerTouchableOpacity = () => {
-  alertMessage("TouchableOpacity tapped...");
-  }
-const handlerTouchableHighlight = () => {
-  alertMessage("TouchableHighlight tapped...");
-  }    
-const handlerTouchableNativeFeedback = () => {
-  alertMessage("TouchableNativeFeedback tapped...");
-  }    
-function alertMessage( text  ){
-  Alert.alert( "alert" , text , [ 
-    { text : "Yes" , onPress: () => BimLogger.log("Yes tapped...")} , 
-    {text : "No" , onPress: () => BimLogger.log("No tapped...")}
-  ]);
-}    
-function errorMessage( text  ){
-  Alert.alert( "error" , text , [ 
-    { text : "Yes" , onPress: () => BimLogger.log("Yes tapped...")} , 
-    {text : "No" , onPress: () => BimLogger.log("No tapped...")}
-  ]);
-}    
-function showDimensions( ){
-  var height = Dimensions.get("screen").height;
-  var width = Dimensions.get("screen").width;
-  var dim = "height: " + height + " & width: " + width
-}       
-function getCurrentDate(){
-
-  var date = new Date().getDate();
-  var month = new Date().getMonth() + 1;
-  var year = new Date().getFullYear();
-  return date + '-' + month + '-' + year;
-}
+// BimLogger.log( "Application Started App  ... " + new Date().toLocaleString() );
+// BimLogger.log( "apiUrl ==> " + BimConfiguration.currentSettings().apiUrl )
+// BimLogger.log(  "fakeServerIPInData ==> " + BimConfiguration.currentSettings().fakeServerIPInData )
+// BimLogger.log(  "isProductionEnvironment ==> " + BimConfiguration.isProductionEnvironment() )
 
 export default function App() {
-  var isPortrait = useDeviceOrientation().portrait
-  var {portrait} = useDeviceOrientation()
-  //BimLogger.log( "isPortrait = " + isPortrait)
-  //BimLogger.log( "portrait = " + portrait)
-  
-  var imgUrl =  "https://picsum.photos/200/300" 
-  return ( 
-    <SafeAreaView style={styles.screenArea}>
-      <WelcomeScreen />
-      <View style={ [styles.header , header2] } >
-          <Text numberOfLines={1} style={styles.logotext}  onPress={handlerHeaderClick}> Bim Accounting ...</Text>
-          <Image style={styles.logoicon} source={require("./app/assets/favicon.png")} /> 
-      </View>
-      
-      <View style={styles.datacontainer}>
-        <ScrollView style={styles.scroller}>
-            <View style={ styles.caption} ><Text> screen/window dimensions </Text></View>            
-            <View>
-              <TouchableOpacity onPress={showDimensions}>
-                <View style={ styles.dimension} >
-                    <Text> getScreenDimention </Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-            <View style={ styles.bottomline} />
+  const Drawer = createDrawerNavigator();
+  const [user , setUser] = React.useState();
+  const [logMessage , setLogMessagee] = React.useState("");
+  const [isAppReady , setIsAppReady] = React.useState(false);
 
-
-            <View style={ styles.caption} ><Text> Flex Prop </Text></View>            
-            <View style={{
-                          flex:1 , flexDirection:"row-reverse", justifyContent : "center" , 
-                          backgroundColor:"#337BB1" , height: 400, marginRight : 5 , marginLeft : 5 , borderRadius : 10 }}>
-              <View style={{ flex:2 , backgroundColor:"#337BB1" }} />
-              <View style={{ flex:1 , backgroundColor:"gold" }} />
-              <View style={{ flex:2 , backgroundColor:"tomato" }} />
-            </View>
-            <View style={ styles.bottomline} />
-
-            <View style={ styles.caption} ><Text> Flex  + justifyContent ( flex says the content is based on rows or cloumns  and justifyContent says where they start to be drawn) </Text></View>            
-            <View style={{
-                          flex:1 , 
-                          flexDirection:"row", 
-                          justifyContent : "center" , 
-                          alignItems : "center",
-                          backgroundColor:"white" , height: 200, marginRight : 5 , marginLeft : 5 , borderRadius : 10 }}>
-              <View style={{ height:50 , width:50 , backgroundColor:"#337BB1" }} />
-              <View style={{ height:100 , width:50 , backgroundColor:"gold" }} />
-              <View style={{ height:150 , width:50 , backgroundColor:"tomato" }} />
-            </View>
-            <View style={ styles.bottomline} />
-
-            <View style={ styles.caption} ><Text> Flex  + justifyContent  + alignItems + alignSelf</Text></View>            
-            <View style={{
-                          flex:1 , 
-                          flexDirection:"row", 
-                          justifyContent : "center" , 
-                          alignItems : "center",
-                          backgroundColor:"white" , height: 200, marginRight : 5 , marginLeft : 5 , borderRadius : 10 }}>
-              <View style={{ height:50 , width:50 , alignSelf:"flex-end", backgroundColor:"#337BB1" }} />
-              <View style={{ height:100 , width:50 , backgroundColor:"gold" }} />
-              <View style={{ height:150 , width:50 , backgroundColor:"tomato" }} />
-            </View>
-            <View style={ styles.bottomline} />
-
-            <View style={ styles.caption} ><Text> Flex  + justifyContent  + alignItems + warpping</Text></View>            
-            <View style={{
-                          flex:1 , 
-                          flexDirection:"row", 
-                          justifyContent : "center" , 
-                          alignItems : "center",
-                          alignContent:"center",
-                          flexWrap : 'wrap',
-                          backgroundColor:"white" , height: 400, marginRight : 5 , marginLeft : 5 , borderRadius : 10 }}>
-              <View style={{ height:50 , width:400 , alignSelf:"flex-end", backgroundColor:"#337BB1" }} />
-              <View style={{ height:100 , width:200 , backgroundColor:"gold" }} />
-              <View style={{ height:150 , width:300 , backgroundColor:"tomato" }} />
-            </View>
-            <View style={ styles.bottomline} />
-
-            <View style={ styles.caption} ><Text> TouchableWithoutFeedback </Text></View>            
-            <TouchableWithoutFeedback onPress={handlerTouchableWithoutFeedback}>
-                <View>
-                  <Image style={styles.imagebox } source={{ uri: 'https://picsum.photos/200/300'}} /> 
-                </View>
-            </TouchableWithoutFeedback>
-            <View style={ styles.bottomline} />
-
-            <View style={ styles.caption} ><Text> TouchableNativeFeedback </Text></View>            
-            <TouchableNativeFeedback onPress={handlerTouchableNativeFeedback}>
-                <View  style={{ width:200 , height:100 , backgroundColor:'dodgerblue' , borderRadius:20}}/>
-            </TouchableNativeFeedback>
-            <View style={ styles.bottomline} />
-
-            <View style={ styles.caption} ><Text> TouchableOpacity </Text></View>            
-            <TouchableOpacity onPress={handlerTouchableOpacity}>
-                  <Image style={styles.imagebox } source={{ uri: 'https://picsum.photos/200/300'}} /> 
-            </TouchableOpacity>       
-            <View style={ styles.bottomline} />             
-
-            <View style={ styles.caption} ><Text> TouchableHighlight </Text></View>            
-            <TouchableHighlight onPress={handlerTouchableHighlight}>
-              <View>
-                <Image style={styles.imagebox } source={{ uri: 'https://picsum.photos/200/300'}} /> 
-                </View>
-            </TouchableHighlight>
-            <View style={ styles.bottomline} />
-
-        </ScrollView>
-      </View> 
-    </SafeAreaView>
+  BimLogger.start(); // start of logging
+  const pushNotification  = usePushNotification( (message) => 
+    {
+      BimLogger.log( "notification recieved : " + JSON.stringify(message) );
+    }  
+    , 
+    (message) => 
+    {
+      BimLogger.log( "notification clicked : " + JSON.stringify(message));
+      navigation.na
+      navigation.navigate( BimRoutes.MESSAGE_LIST )      
+    } 
   );
-} 
 
-const header2 = {
-}
+  //React.useEffect(() => _loadResourcesAsync(), []);
+  
+  const restoreUser = async() =>{
+    setLogMessagee( logMessage + " => Step_7 ");
+    const user = await BimSecureStorage.getUser()
+    if(user)
+      setUser(user);
+  }
+
+  const _loadResourcesAsync = async () => {
+    try {
+      setLogMessagee(logMessage + " => Step_1 ");
+      await SplashScreen.preventAutoHideAsync();
+      setLogMessagee(logMessage + " => Step_2 ");
+      await restoreUser();
+      setLogMessagee(logMessage + " => Step_3 ");
+      await pushNotification.registerForPushNotification();
+      setLogMessagee(logMessage + " => Step_4 ");
+
+      //await new Promise(resolve => setTimeout(resolve, 2000));
+    } catch (e) {
+      BimLogger.log( " _loadResourcesAsync function error : " + e);
+      setLogMessagee( logMessage + " ==> Step_5 " + " _loadResourcesAsync function error : " + e);
+    } finally {
+      setIsAppReady(true);
+      setLogMessagee( logMessage + " ==> Step_10 ");
+      //await SplashScreen.hideAsync();
+    }
+  }  
+  const onLayoutRootView = useCallback(async () => {
+      if (isAppReady) {
+        setLogMessagee( logMessage + " ==> Step_6");
+        await SplashScreen.hideAsync();
+      }
+    }, [isAppReady]);
+    
+
+  if (!isAppReady) 
+      return null // just app is showing splash screen...
+  
+  if (isAppReady) 
+  return ( 
+    <> 
+      <View onLayout={onLayoutRootView} />
+      <BimLogView visible={false} logMessage = {logMessage}  />
+      <BimApplicationError/>      
+      <AuthContext.Provider value={ { user , setUser } } >
+        <NavigationContainer ref={navigationRef} >
+          { !user && <AuthNavigator  /> }
+          { user  &&  <AppDrawerNavigator  /> }
+        </NavigationContainer>  
+      </AuthContext.Provider>
+    </>
+
+    ); 
+} 

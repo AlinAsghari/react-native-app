@@ -16,6 +16,7 @@ const BimColors =  {
     tabActiveItem:"#FB3944",
     deleteIcon:"#FB3944",
     connectionErrorBar:"#E63946",
+    logBar:"#E5FFF1",
     errorText:"#414143",
     tabButton:"#FABA30",
     headerColor:"#FABA30",

@@ -87,7 +87,7 @@ export default usePushNotification = ( NotificationReceivedListener , Notificati
 
   const registerForPushNotification = async () =>{
     try {
-
+      //return;
       const permission = await Notifications.requestPermissionsAsync();
       if(!permission.granted) return;
       const _token = await Notifications.getExpoPushTokenAsync();
