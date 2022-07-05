@@ -29,8 +29,12 @@ const settings = {
   };
   
   const currentSettings = () => {
+    //return settings.production;
+
     if (__DEV__) return settings.dev_Bank;
-    if (Constants.manifest.releaseChannel === "staging") return settings.staging;
+    if(Constants.manifest)
+      if (Constants.manifest.releaseChannel && Constants.manifest.releaseChannel === "staging") 
+        return settings.staging;
     return settings.production;
   };
   

@@ -59,7 +59,7 @@ function BimListItemMultiRow({
                       {
                         onDelete &&
                         <View style={styles.viewDividerRight}>
-                          <BimIcon name="trash-can" size={40} backgroundColor="white" hasBorder={true} 
+                          <BimIcon name="trash-can" size={30} backgroundColor="white" hasBorder={true} 
                               iconColor={BimColors.deleteIcon} onPress={ onDelete } />
                         </View>
                       }
@@ -92,12 +92,12 @@ const styles = StyleSheet.create( {
     borderColor: BimColors.border,
     borderRadius : 0 ,
     overflow: 'hidden',
-    paddingBottom :10 ,
+    paddingBottom :2 ,
     marginBottom:0
   },     
   imageWrapper: 
   {
-    width:100,
+    width:50,
     flexDirection : "column",
     justifyContent: 'center',
     alignItems:'center',
@@ -107,7 +107,7 @@ const styles = StyleSheet.create( {
     paddingRight:0,
     margin:0,
     marginBottom:0,
-    paddingTop:4,
+    paddingTop:25,
     overflow: 'hidden'
   },  
   textWrapper: 
@@ -181,9 +181,9 @@ const styles = StyleSheet.create( {
     borderRadius : 5 ,
   }, 
   image :{
-    width:60,
-    height:60,
-    borderRadius:30,
+    width:40,
+    height:40,
+    borderRadius:80,
     borderColor:BimColors.border , 
     borderWidth : 0,
   } ,      

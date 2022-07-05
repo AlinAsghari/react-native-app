@@ -54,16 +54,17 @@ function BimAdvertCard( { id , title , price, imageUrl , thumbnailUrl,
           keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 100}
         >
         <TouchableHighlight style={[styles.hilighter]} underlayColor= {BimColors.touchHighlight} onPress={onPress}>
+
           <View style={[styles.cardBox]} >
+            <View style={styles.titleWrapperRightPanel}>
+              { showDelete &&
+              <BimIcon name="trash-can" size={30} backgroundColor="white" hasBorder={true} 
+                        iconColor={BimColors.deleteIcon} onPress={ onDelete } />
+              }
+            </View>
             <View style={styles.titleWrapper}>
               <View style={styles.titleWrapperLeftPanel}>
                 <BimText isBold={true} textColor={BimColors.normalText}> {title} </BimText>
-              </View>
-              <View style={styles.titleWrapperRightPanel}>
-                { showDelete &&
-                <BimIcon name="trash-can" size={40} backgroundColor="white" hasBorder={true} 
-                         iconColor={BimColors.deleteIcon} onPress={ onDelete } />
-                }
               </View>
             </View>
             <View style={styles.imageWrapper}>
@@ -76,7 +77,7 @@ function BimAdvertCard( { id , title , price, imageUrl , thumbnailUrl,
               }
             </View>
             <View style={styles.subTitleWrapper}>
-              <BimText> price : {price} </BimText>
+              <BimText>Price : {price}$ </BimText>
               <BimText maxnumberOfLines={3} >
                 Bim Bank is one od the best Asian bank, that has been located in Iran, and exactly in the middle east where the peace is kinda rare thing. 
                 Bim Bank is one od the best Asian bank, that has been located in Iran, and exactly in the middle east where the peace is kinda rare thing 
@@ -115,7 +116,8 @@ function BimAdvertCard( { id , title , price, imageUrl , thumbnailUrl,
                             iconColor={BimColors.textInputIcon}
                             textContentType="jobTitle"
                             multiline={true}
-                            numberOfLines={3}
+                            numberOfLines={2}
+                            hasBottomLine = {false}
                             maxLength={200}                            
                           />                         
                         </View>  
@@ -149,18 +151,18 @@ const styles = StyleSheet.create( {
     width:'100%',
     borderWidth:1,
     borderColor:BimColors.border,
-    borderRadius : 20 ,
+    borderRadius : 5,
     overflow: 'hidden',
-    padding:15,
+    padding:5,
     // paddingRight: 5,
     paddingTop:5,
-    paddingBottom :15 ,
+    paddingBottom :5 ,
     // marginBottom:10,
     //  height:'100%',
   },     
   modalHeader:{
     width:"100%",
-    height:50,
+    height:35,
     borderRadius:5,
     borderBottomLeftRadius : 0,
     borderBottomRightRadius : 0,
@@ -168,8 +170,8 @@ const styles = StyleSheet.create( {
     borderBottomWidth:1,
     borderColor:BimColors.border,
     backgroundColor:BimColors.boxHeader,
-    paddingLeft:20,
-    paddingTop:10,
+    paddingLeft:5,
+    paddingTop:5,
   },
   modalFooter:{
     width:"100%",
@@ -231,8 +233,8 @@ const styles = StyleSheet.create( {
     borderColor: BimColors.border,
     paddingRight:10,
     margin:0,
-    marginBottom:10,
-    height:50
+    marginBottom:5,
+    height:30
   },  
   titleWrapperLeftPanel: 
   {
@@ -245,23 +247,27 @@ const styles = StyleSheet.create( {
     borderWidth:0,
     borderBottomWidth : 0,
     borderColor: BimColors.border,
-    padding:10,
-    paddingLeft:1,
+    //padding:10,
+    paddingLeft:5,
   },    
   titleWrapperRightPanel: 
   {
-    flex:1,
-    flexDirection : "row",
-    justifyContent: 'flex-end',
-    alignItems:'center',
+    //flex:1,
+    //flexDirection : "row",
+    //justifyContent: 'flex-end',
+    //alignItems:'center',
+    position:'absolute',
+    zIndex:100,
+    right:5,
+    top:2,
     backgroundColor:"#fff",
-    width:'100%',
+    //width:'100%',
     borderWidth:0,
     borderBottomWidth : 0,
     borderColor: BimColors.border,
     paddingRight:0,
     paddingVertical:1,
-    margin:5
+    //margin:5
   },    
   subTitleWrapper: 
   {
@@ -272,13 +278,13 @@ const styles = StyleSheet.create( {
     width:'100%',
     borderTopWidth:1,
     borderColor:BimColors.border,
-    padding:10,
+    padding:5,
     marginHorizontal:5,
-    marginTop:10,
+    marginTop:5,
   },       
   hilighter:{
     borderRadius : 0 ,
-    padding:10
+    padding:5
 
   },
   sendMessageBox:{
@@ -299,8 +305,8 @@ const styles = StyleSheet.create( {
   {
     borderWidth:0,
     borderColor:BimColors.border,
-    margin:5,
-    paddingBottom:5,
+    //margin:5,
+    paddingBottom:0,
   },    
 });
 

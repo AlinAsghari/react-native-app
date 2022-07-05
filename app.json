@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "bimApplication",
-    "slug": "bimApplication",
+    "name": "BimApplications",
+    "slug": "BimApplications",
     "privacy": "public",
     "version": "1.0.0",
     "orientation": "default",
@@ -18,7 +18,7 @@
       "**/*"
     ],
     "ios": {
-      "bundleIdentifier": "ir.bimcoluder.bimapplication",
+      "bundleIdentifier": "ir.bimcoluder.bimapplications",
       "buildNumber": "1.0.0",
       "supportsTablet": true
     },

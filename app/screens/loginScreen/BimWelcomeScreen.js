@@ -32,13 +32,13 @@ function BimWelcomeScreen({ navigation , route }) {
             iconColor={BimColors.buttonTypeA_Icon}  
             onPress={ () => navigation.navigate(BimRoutes.USER_REGISTRATION)} />
 
-          <BimButton 
+          {/* <BimButton 
             text="Data Entry Example Form ..." 
             buttonColor={BimColors.buttonTypeC} 
-            iconName= "content-save"  
+            iconName= "content-save"    
             iconSize={30} 
             iconColor={BimColors.buttonTypeC_Icon}  
-            onPress={ () => navigation.navigate(BimRoutes.DATA_ENTRY_EXAMPLE_FORM)} />
+            onPress={ () => navigation.navigate(BimRoutes.DATA_ENTRY_EXAMPLE_FORM)} /> */}
 
             <BimButton 
               text="Login..." 

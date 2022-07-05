@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   bimText: {
     fontSize:Platform.OS === 'android' ? BimConfiguration.androidFontSize : BimConfiguration.IosFontSize,
     fontFamily: Platform.OS === 'android' ? "Roboto" : "Avenir",
-    lineHeight:25,
+    lineHeight:22,
     borderWidth:0,
     borderColor:'black'
     },         

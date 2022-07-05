@@ -71,6 +71,7 @@ function BimMessagesListScreen() {
                             title={item.title} 
                             subTitle={item.subTitle} 
                             image={item.image}
+                            //imageUrlSize={20}
                             // imageUrl={item.imageUrl} 
                             // imageUrlSize = {70}
                             maxnumberOfLines={2}

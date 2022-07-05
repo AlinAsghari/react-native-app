@@ -51,11 +51,21 @@ const AppBottomTabNavigator = ( ) => (
       }}
     >
         <Tab.Screen  
+          name={BimRoutes.ADVERTISE_NAVIGATOR} 
+          component={BimAdvertiseNavigator} 
+          options= {
+            ( {navigation , route} ) => (
+              {
+                tabBarIcon : ( {size , color} ) => (  <Ionicons name={'apps'} size={size} color={color} headerTitle="AAA" /> ),
+                title: 'Advertise',
+              }) }
+        />             
+        <Tab.Screen  
           name={BimRoutes.BANK_LIST_NAVIGATOR} 
           component={BimBanksNavigator}  
           options = {{
               tabBarIcon : ( { size , color } ) => ( <MaterialCommunityIcons name="bank" size={size} color={color} />),
-              title: 'Banks List ....',
+              title: 'Banks',
               // headerTitle: () => (
               //   <Image style={{ width: 50, height: 50 }} source={require("./logo.png")} />
               // ),            
@@ -78,16 +88,6 @@ const AppBottomTabNavigator = ( ) => (
                 tabBarIcon : ( {size , color} ) => ( <MaterialCommunityIcons name="menu" size={size} color={color} /> )
               }) }
         />           */}
-        <Tab.Screen  
-          name={BimRoutes.ADVERTISE_NAVIGATOR} 
-          component={BimAdvertiseNavigator} 
-          options= {
-            ( {navigation , route} ) => (
-              {
-                tabBarIcon : ( {size , color} ) => (  <Ionicons name={'apps'} size={size} color={color} headerTitle="AAA" /> ),
-                title: 'Advertisements List ....',
-              }) }
-        />             
         <Tab.Screen  
           name={BimRoutes.MESSAGE_LIST} 
           component={BimMessagesListScreen} 
@@ -117,7 +117,7 @@ const AppBottomTabNavigator = ( ) => (
               }) }
         />    */}
 
-        <Tab.Screen  
+        {/* <Tab.Screen  
                 name={BimRoutes.USER_LOGOUT} 
                 component={BimLogoutScreen} 
                 options= {
@@ -125,9 +125,9 @@ const AppBottomTabNavigator = ( ) => (
                     {
                       tabBarIcon : ( {size , color} ) => (  <Ionicons name={'log-out'} size={size} color={color} headerTitle="AAA" />)
                     }) }
-              />   
+              />    */}
 
-        <Tab.Screen  
+        {/* <Tab.Screen  
           name={BimRoutes.USER_REGISTRATION} 
           component={BimDataEntryScreen} 
           options= {
@@ -135,9 +135,8 @@ const AppBottomTabNavigator = ( ) => (
               {navigation , route} ) => (
               {        
                 tabBarButton : () => ( <BimTabButton size={40} onPress={() => navigation.navigate(BimRoutes.USER_REGISTRATION)} />),
-                // tabBarIcon : ( {size , color} ) => ( <MaterialCommunityIcons name="message" size={size} color={color} /> )
               }) }
-        />   
+        />    */}
 
         <Tab.Screen  
           name={BimRoutes.ADVERTISE_NEW} 

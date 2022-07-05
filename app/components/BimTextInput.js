@@ -29,6 +29,7 @@ function BimTextInput({
   secureTextEntry = false,
   multiline = false ,
   numberOfLines,
+  hasBottomLine = true,
   width="100%" ,
   textAlignVertical='top',
   ... otherProps
@@ -39,8 +40,10 @@ function BimTextInput({
   //   if(onChangeText) onChangeText(text);
   // }
   const boldStyle = isBold? {fontWeight : "700"} : {}
+  const borderStyle = hasBottomLine? {} : {borderBottomWidth : 0} 
+  
     return (
-      <View style={[styles.boxWrapper , addStyle  , {width}]}>
+      <View style={[styles.boxWrapper , addStyle  , {width} , borderStyle]}>
           <MaterialCommunityIcons name={iconName} size={25} color={iconColor}  />
           <TextInput 
             onChangeText={onChangeText}

@@ -31,6 +31,7 @@ function BimFormikTextInput({
   secureTextEntry,
   multiline ,
   numberOfLines,
+  hasBottomLine,
   width , 
   ... otherProps
 }) {
@@ -82,6 +83,7 @@ function BimFormikTextInput({
           multiline = {multiline}
           numberOfLines={numberOfLines}
           width = {width}
+          hasBottomLine = {hasBottomLine}
           {... otherProps}
                 /> 
         <BimErrorMessage visible={touched[name]} errorMessage = {errors[name]} />

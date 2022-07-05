@@ -34,7 +34,7 @@ const AuthNavigator = () => (
       <Stack.Screen name={BimRoutes.WELCOME} component={BimWelcomeScreen} options={{headerShown:false}} />
       <Stack.Screen name={BimRoutes.USER_LOGIN} component={BimLoginScreen} options={{ title: 'Login ....' }} />
       <Stack.Screen name={BimRoutes.USER_REGISTRATION} component={BimRegisterUserScreen} options={{ title: 'Create New User ....' }} />
-      <Stack.Screen name={BimRoutes.DATA_ENTRY_EXAMPLE_FORM} component={BimDataEntryScreen} options={{ title: 'Data Entry Form....' }} />
+      {/* <Stack.Screen name={BimRoutes.DATA_ENTRY_EXAMPLE_FORM} component={BimDataEntryScreen} options={{ title: 'Data Entry Form....' }} /> */}
     </Stack.Navigator>
 )
 

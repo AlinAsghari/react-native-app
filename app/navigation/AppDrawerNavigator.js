@@ -15,6 +15,7 @@ import { AppDrawerContent  } from "./AppDrawerContent ";
 import { getHeaderTitle } from '@react-navigation/elements';
 import AppBottomTabNavigator from "./AppBottomTabNavigator";
 import BimLogoutScreen from "../screens/loginScreen/BimLogoutScreen";
+import BimDataEntryScreen from "../screens/dataEntryForm/BimDataEntryScreen";
 //import usePushNotification from "../utility/hooks/usePushNotification";
 
 const Drawer = createDrawerNavigator();
@@ -59,12 +60,12 @@ const AppDrawerNavigator = () =>
             drawerIcon: config => <Ionicons name={'ios-newspaper' } size={18} color={'#444'} headerTitle="AAA" />,
         }} /> */}
 
-        {/* <Drawer.Screen name="Login" component={BimLoginScreen} 
+        <Drawer.Screen name="DataEntryfullScreen" component={BimDataEntryScreen} 
             options={{
                 drawerIcon: config => <Ionicons name={'person-circle-outline'} size={18} color={'#444'}/>,
-                title: 'Log in ....',
+                title: 'DataEntry full example ....',
             }}
-        /> */}
+        />
 
         <Drawer.Screen name="Logout" 
             component={BimLogoutScreen} 

@@ -2,5 +2,19 @@
 "version : 1.0.0"
 change by hassan
 
+
+*********** run application normally ************
 npm start
-expo start --no-dev --minify
+*************************************************
+
+
+*********** pull force *************************
+git reset --hard
+git clean -fd
+git pull
+*************************************************
+
+*********** build apk for android *************************
+standalone apk ==> expo build:android -t apk 
+bundle for a repository ==> expo build:android 
+*************************************************
