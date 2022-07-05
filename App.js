@@ -80,7 +80,7 @@ export default function App() {
   React.useEffect(() => _loadResourcesAsync(), []);
   
   const restoreUser = async() =>{
-    BimLogger.log( logMessage + " => Step_7 ");
+    //BimLogger.log( logMessage + " => Step_7 ");
     const user = await BimSecureStorage.getUser()
     if(user)
       setUser(user);
@@ -88,27 +88,27 @@ export default function App() {
 
   const _loadResourcesAsync = async () => {
     try {
-      BimLogger.log(logMessage + " => Step_1 ");
+      //BimLogger.log(logMessage + " => Step_1 ");
       await SplashScreen.preventAutoHideAsync();
-      BimLogger.log(logMessage + " => Step_2 ");
+      //BimLogger.log(logMessage + " => Step_2 ");
       await restoreUser();
-      BimLogger.log(logMessage + " => Step_3 ");
+      //BimLogger.log(logMessage + " => Step_3 ");
       await pushNotification.registerForPushNotification();
-      BimLogger.log(logMessage + " => Step_4 ");
+      //BimLogger.log(logMessage + " => Step_4 ");
 
       //await new Promise(resolve => setTimeout(resolve, 2000));
     } catch (e) {
       BimLogger.log( " _loadResourcesAsync function error : " + e);
-      BimLogger.log( logMessage + " ==> Step_5 " + " _loadResourcesAsync function error : " + e);
+      //BimLogger.log( logMessage + " ==> Step_5 " + " _loadResourcesAsync function error : " + e);
     } finally {
       setIsAppReady(true);
-      BimLogger.log( logMessage + " ==> Step_10 ");
+      //BimLogger.log( logMessage + " ==> Step_10 ");
       //await SplashScreen.hideAsync();
     }
   }  
   const onLayoutRootView = useCallback(async () => {
       if (isAppReady) {
-        BimLogger.log( logMessage + " ==> Step_6");
+        //BimLogger.log( logMessage + " ==> Step_6");
         await SplashScreen.hideAsync();
       }
     }, [isAppReady]);
