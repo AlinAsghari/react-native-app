@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "clk",
-    "slug": "BimApplications",
+    "name": "BimApplication",
+    "slug": "BimApplication",
     "privacy": "public",
     "version": "1.0.0",
     "orientation": "default",
@@ -18,12 +18,12 @@
       "**/*"
     ],
     "ios": {
-      "bundleIdentifier": "ir.bimcoluder.bimapplications",
+      "bundleIdentifier": "ir.bimcoluder.BimApplication",
       "buildNumber": "1.0.0",
       "supportsTablet": true
     },
     "android": {
-      "package": "ir.bimcoluder.reactnativeexample",
+      "package": "ir.bimcoluder.BimApplication",
       "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./app/assets/adaptive-icon.png",
